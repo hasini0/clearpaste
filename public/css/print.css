@@ -1,0 +1,12 @@
+/* "Print / Save as PDF" gives a clean one-page handout someone can keep
+   on the fridge or bring to an appointment. */
+
+@media print {
+  :root { --bg: #fff; --surface: #fff; --surface-2: #f3f3f3; --ink: #000; --ink-2: #333; --line: #bbb; --shadow: none; }
+  .site-header, .result-toolbar, .options-bar, .ask-card, .original-card, .speak-bar, .toast-region, .btn, .copy, .skip-link { display: none !important; }
+  .result-grid { grid-template-columns: 1fr; }
+  .card { break-inside: avoid; border: 1px solid #bbb; }
+  .hero-card { background: #fff; color: #000; border: 2px solid #000; }
+  .hero-card .card-title, .hero-card .doc-type { color: #333; }
+  main { padding: 0; }
+}

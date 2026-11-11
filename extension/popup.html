@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ClearPaste</title>
+  <link rel="stylesheet" href="popup.css" />
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <header>
+    <strong><span class="mark" aria-hidden="true">⌃V</span> ClearPaste</strong>
+    <select id="level" aria-label="Reading level">
+      <option value="simple">Simply</option>
+      <option value="standard">Normally</option>
+      <option value="detailed">In detail</option>
+    </select>
+  </header>
+  <main id="out" aria-live="polite"><p class="muted">Reading the page…</p></main>
+  <footer>
+    <label>Server <input id="server" type="url" spellcheck="false" /></label>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* Design tokens: colour, type, spacing. Themes and accessibility modes
+   only ever change these variables. */
+
+:root {
+  --bg: #f7f4ee;
+  --surface: #ffffff;
+  --surface-2: #f0ece4;
+  --ink: #1b1a17;
+  --ink-2: #57534b;
+  --line: #e2dcd0;
+  --accent: #3843c4;
+  --accent-hover: #2b35a8;
+  --accent-ink: #ffffff;
+  --accent-soft: #e7e8fb;
+  --good: #1d7a4b;
+  --good-soft: #e2f3e9;
+  --warn: #8f5500;
+  --warn-soft: #fcefd3;
+  --danger: #b42318;
+  --danger-soft: #fde6e2;
+  --speak: #ffe27a;
+  --term: #7a4ed6;
+  --term-soft: #efe7ff;
+  --shadow: 0 1px 2px rgb(27 26 23 / 0.06), 0 8px 24px rgb(27 26 23 / 0.06);
+  --shadow-lg: 0 2px 4px rgb(27 26 23 / 0.06), 0 24px 60px rgb(27 26 23 / 0.12);
+
+  --font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --scale: 1;
+  --leading: 1.6;
+  --tracking: 0;
+  --word-gap: normal;
+
+  --radius: 18px;
+  --radius-sm: 10px;
+  --border: 1px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --max: 1180px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --speed: 220ms;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #131418;
+    --surface: #1c1e24;
+    --surface-2: #252830;
+    --ink: #f2f0eb;
+    --ink-2: #b7b3aa;
+    --line: #33363f;
+    --accent: #929dff;
+    --accent-hover: #aab3ff;
+    --accent-ink: #0d1033;
+    --accent-soft: #272c52;
+    --good: #5fd49c;
+    --good-soft: #16342a;
+    --warn: #f3bb5d;
+    --warn-soft: #3a2c12;
+    --danger: #ff8b7b;
+    --danger-soft: #3d1c19;
+    --speak: #6d5b12;
+    --term: #c4a8ff;
+    --term-soft: #2e2547;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+    --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 60px rgb(0 0 0 / 0.45);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #131418;
+  --surface: #1c1e24;
+  --surface-2: #252830;
+  --ink: #f2f0eb;
+  --ink-2: #b7b3aa;
+  --line: #33363f;
+  --accent: #929dff;
+  --accent-hover: #aab3ff;
+  --accent-ink: #0d1033;
+  --accent-soft: #272c52;
+  --good: #5fd49c;
+  --good-soft: #16342a;
+  --warn: #f3bb5d;
+  --warn-soft: #3a2c12;
+  --danger: #ff8b7b;
+  --danger-soft: #3d1c19;
+  --speak: #6d5b12;
+  --term: #c4a8ff;
+  --term-soft: #2e2547;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 60px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}

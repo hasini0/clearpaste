@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClearPaste</title>
+  <meta name="description" content="Paste any confusing document — a bill, a legal notice, a medicine leaflet, a suspicious text — and understand it in seconds, in plain words and in your language." />
+  <meta name="theme-color" content="#f7f4ee" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231b1a17'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' fill='%23f7f4ee' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/modes.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/print.css" />
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="/" aria-label="ClearPaste home">
+      <span class="brand-mark" aria-hidden="true">⌃V</span>
+      <span>ClearPaste</span>
+    </a>
+    <div class="header-actions">
+      <span class="badge" id="engine-badge" role="status">Connecting…</span>
+      <button class="btn btn-ghost" id="open-prefs" type="button" aria-label="Reading settings" aria-haspopup="dialog" aria-controls="prefs-dialog">
+        <span data-icon="sliders"></span><span class="label-wide">Reading settings</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- 1. Input -->
+    <section class="view" id="view-input" aria-labelledby="hero-title">
+      <div class="hero">
+        <h1 id="hero-title">Paste anything confusing.<br /><span>Understand it in seconds.</span></h1>
+        <p class="lede">Bills, legal notices, benefit letters, medicine leaflets, suspicious texts. ClearPaste rewrites them in plain words, in your language, reads them aloud, and tells you exactly what to do next.</p>
+      </div>
+
+      <div class="input-grid">
+        <div data-options-slot="input">
+        <!-- Shared by input and result views; js/ui/views.js moves it between slots -->
+        <form class="options-bar" id="options" aria-label="How to explain it">
+          <span id="level-label">Explain it</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="level-label">
+            <input type="radio" name="level" id="level-simple" value="simple" checked /><label for="level-simple">Simply</label>
+            <input type="radio" name="level" id="level-standard" value="standard" /><label for="level-standard">Normally</label>
+            <input type="radio" name="level" id="level-detailed" value="detailed" /><label for="level-detailed">In detail</label>
+          </div>
+          <label for="language">in</label>
+          <select class="select" id="language" name="language"></select>
+        </form>
+        </div>
+        <div class="paste-zone" id="paste-zone" tabindex="0" role="region" aria-label="Paste or drop a document here" aria-describedby="paste-sub">
+          <div class="keycaps" aria-hidden="true"><kbd data-mod>Ctrl</kbd><span>+</span><kbd>V</kbd></div>
+          <p class="paste-title">Press <strong><span data-mod>Ctrl</span> + V</strong> anywhere on this page</p>
+          <p class="paste-sub" id="paste-sub">Works with copied text <em>and</em> screenshots. You can also drop a photo, PDF or Word file here.</p>
+          <div class="paste-actions">
+            <button class="btn btn-primary" type="button" id="btn-clipboard"><span data-icon="clipboard"></span>Paste from clipboard</button>
+            <label class="btn" for="file-input"><span data-icon="camera"></span>Photo, PDF or file</label>
+            <input class="sr-only" type="file" id="file-input" accept="image/*,.pdf,application/pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.txt,.md,text/plain" />
+            <button class="btn" type="button" id="btn-type" aria-expanded="false" aria-controls="manual-form"><span data-icon="keyboard"></span>Type it</button>
+          </div>
+        </div>
+
+        <form class="manual-form" id="manual-form" hidden>
+          <label for="manual-text">Paste or type the text of your document</label>
+          <textarea class="textarea" id="manual-text" rows="8" placeholder="For example: “Your account is past due. Please remit payment of $120.00 no later than…”"></textarea>
+          <div class="form-row">
+            <button class="btn btn-primary" type="submit"><span data-icon="sparkle"></span>Make it clear</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="samples">
+        <h2 id="samples-title">No document handy? Try a real-world example:</h2>
+        <ul class="chip-list" id="sample-list" aria-labelledby="samples-title"></ul>
+      </div>
+
+      <ul class="trust-row" aria-label="How ClearPaste protects you">
+        <li class="trust-item"><span data-icon="lock"></span><div><strong>Photos stay on your device</strong><span>Text is read from images right in your browser.</span></div></li>
+        <li class="trust-item"><span data-icon="shield"></span><div><strong>Private numbers hidden</strong><span>SSNs, card and bank numbers are masked before any AI sees them.</span></div></li>
+        <li class="trust-item"><span data-icon="check"></span><div><strong>Works without AI</strong><span>A built-in offline engine still explains, finds deadlines and spots scams.</span></div></li>
+      </ul>
+    </section>
+
+    <!-- 2. Loading -->
+    <section class="view loading" id="view-loading" hidden aria-live="polite" aria-busy="true">
+      <div class="loader" aria-hidden="true"></div>
+      <h2 id="loading-title">Reading your document…</h2>
+      <div class="progress" id="ocr-progress" hidden><span></span></div>
+      <ol class="steps" id="loading-steps"></ol>
+    </section>
+
+    <!-- 3. Result -->
+    <section class="view" id="view-result" hidden aria-labelledby="result-title">
+      <div class="result-toolbar">
+        <div class="group">
+          <button class="btn" type="button" id="btn-new"><span data-icon="arrow-left"></span>New document</button>
+          <div data-options-slot="result"></div>
+        </div>
+        <div class="group">
+          <button class="btn btn-primary" type="button" id="btn-read-all"><span data-icon="speaker"></span>Read it to me</button>
+          <button class="btn" type="button" id="btn-print"><span data-icon="printer"></span>Print or save</button>
+        </div>
+      </div>
+      <div id="result"></div>
+    </section>
+  </main>
+
+  <dialog class="dialog" id="prefs-dialog" aria-labelledby="prefs-title"></dialog>
+  <div class="reading-ruler" id="reading-ruler" aria-hidden="true" hidden></div>
+  <div class="speak-bar" id="speak-bar" hidden></div>
+  <div class="toast-region" id="toast-region" role="status" aria-live="polite"></div>
+  <div class="drop-overlay" id="drop-overlay" hidden><div>Drop it to read it</div></div>
+</body>
+</html>
