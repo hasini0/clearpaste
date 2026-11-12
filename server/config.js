@@ -29,6 +29,8 @@ export const config = Object.freeze({
   maxInputChars: 20000,
   maxBodyBytes: 1_000_000,
   aiTimeoutMs: 60_000,
+  // Requests per visitor per 10 minutes (analyze + ask together).
+  rateLimit: Number(process.env.RATE_LIMIT) || 40,
 });
 
 export const isAIEnabled = () => Boolean(config.anthropicKey);

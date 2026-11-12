@@ -1,0 +1,15 @@
+# Render.com blueprint: free web service, auto-deploys on every git push.
+services:
+  - type: web
+    name: clearpaste
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Optional: add your Claude key in the Render dashboard to enable AI mode.
+      - key: ANTHROPIC_API_KEY
+        sync: false

@@ -4,6 +4,7 @@
 import { config, isAIEnabled } from './config.js';
 import { createRouter } from './http/router.js';
 import { readJson, sendJson } from './http/json.js';
+import { createRateLimiter } from './http/rateLimit.js';
 import { serveStatic } from './http/static.js';
 import { analyzeDocument } from './services/analyzer.js';
 import { answerQuestion } from './services/asker.js';
@@ -11,17 +12,20 @@ import { ValidationError } from './services/validate.js';
 
 export function createApp() {
   const router = createRouter();
+  const limitRequests = createRateLimiter({ limit: config.rateLimit, windowMs: 10 * 60_000 });
 
   router.get('/api/health', (req, res) => {
     sendJson(res, 200, { ok: true, ai: isAIEnabled(), model: isAIEnabled() ? config.model : null });
   });
 
   router.post('/api/analyze', async (req, res) => {
+    limitRequests(req);
     const body = await readJson(req, config.maxBodyBytes);
     sendJson(res, 200, await analyzeDocument(body));
   });
 
   router.post('/api/ask', async (req, res) => {
+    limitRequests(req);
     const body = await readJson(req, config.maxBodyBytes);
     sendJson(res, 200, await answerQuestion(body));
   });
